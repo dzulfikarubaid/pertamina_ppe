@@ -1,22 +1,48 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import TopBar from './topbar'
 import SideBar from './sidebar'
 import AppContext from './context';
 import { BiLink } from 'react-icons/bi';
+import { useRouter } from 'next/router';
+import { auth } from '@/firebase/connect';
+import { onAuthStateChanged } from 'firebase/auth';
+import Account from './account';
 
 function Home() {
-  const { dashboard, cctv } = useContext(AppContext);
+  const { dashboard, cctv, lm, account } = useContext(AppContext);
+  const [authUser, setAuthUser] = React.useState<any>("");
+  const router = useRouter();
+ const [home, setHome] = React.useState(false);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      setAuthUser(user);
+      setHome(true)
+    } else {
+      router.push("/")
+    }
+  });
 
-  return (
+  }, [])
+
+  return(home &&
+
+  (
     <div>
     <TopBar></TopBar>
     <div className='flex flex-row gap-2'>
     <SideBar></SideBar>
    <div className='p-2 w-full h-full'>
    {
-      dashboard ?
+      dashboard &&
       <h1>Dashboard</h1>
-      : cctv &&
+      
+    }
+    {
+      cctv &&
       <div className='flex flex-col justify-center items-center w-full h-full'>
       <div className=' p-1 bg-black/30 rounded-2xl mt-32'>
       <img src="logo.png" width={175} alt="" />
@@ -32,13 +58,17 @@ function Home() {
      
       </div>
       </div>
+    }
+    {
+      account &&
+      <Account></Account>
     } 
     </div>
     </div>
     
     
     </div>
-  )
+  ))
 }
 
 export default Home
