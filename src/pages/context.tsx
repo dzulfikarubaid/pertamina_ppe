@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, ReactNode } from 'react';
 
 type AppContextType = {
   dashboard: boolean;
@@ -11,9 +11,13 @@ type AppContextType = {
   setAccount: () => void;
 };
 
-const AppContext = createContext<AppContextType>({} as AppContextType);
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider = ({ children }: any) => {
+type AppProviderProps = {
+  children: ReactNode;
+};
+
+export const AppProvider = ({ children }: AppProviderProps) => {
   const [dashboard, setDashboardState] = useState(true);
   const [cctv, setCctvState] = useState(false);
   const [lm, setLmState] = useState(false);
