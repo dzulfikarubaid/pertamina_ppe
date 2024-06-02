@@ -1,0 +1,54 @@
+const options1 = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top' as const,
+        },
+        title: {
+            display: true,
+            text: 'Grafik Pelanggaran PPE/bulan',
+        },
+    },
+};
+
+const options2 = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top' as const,
+        },
+        title: {
+            display: true,
+            text: 'Grafik Pelanggaran PPE/hari',
+        },
+    },
+};
+const options3 = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top' as const,
+        },
+        title: {
+            display: true,
+            text: 'Grafik Pelanggaran PPE/tahun',
+        },
+    },
+};
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+
+const currentDate = new Date();
+const currentMonth = currentDate.getMonth();
+const currentYear = currentDate.getFullYear();
+const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+const lists = Array.from({ length: daysInMonth }, (_, index) => {
+    const date = new Date(currentYear, currentMonth, index + 1);
+    return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'numeric' });
+});
+
+
+
+const years = [2024, 2025, 2026, 2027, 2028, 2029, 2030];

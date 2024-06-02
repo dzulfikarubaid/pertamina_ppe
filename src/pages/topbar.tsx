@@ -39,10 +39,12 @@ function TopBar() {
     setLogout(false)
   }
   return (
-    <div className='w-full p-1 flex flex-row justify-between items-center bg-black/10'>
+    <>
+    <div className='fixed w-full p-1 flex flex-row justify-between items-center bg-gray-100 z-[99999]'>
       <Link href="/home">
         <Image width={175} height={50} className='w-[175px] h-auto' src="/logo.png" alt="" /></Link>
       <div className='pr-4 '>
+    
 
         <button onClick={() => setLogout(!logout)}>
           <div className='flex flex-row gap-2 items-center'>
@@ -66,6 +68,11 @@ function TopBar() {
         }
       </div>
     </div>
+  
+    <div className=' w-full p-1 flex flex-row h-[70px] justify-between items-center '>
+      
+    </div>
+    </>
   )
 }
 

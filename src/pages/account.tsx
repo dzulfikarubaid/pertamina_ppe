@@ -3,7 +3,7 @@ import { deleteUser, onAuthStateChanged, reauthenticateWithCredential, updateEma
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
-import { BiCamera } from 'react-icons/bi';
+import { BiCamera, BiEdit, BiSave, BiTrash } from 'react-icons/bi';
 import Image from 'next/image';
 function Account() {
     const [authUser, setAuthUser] = React.useState<any>(null);
@@ -68,7 +68,10 @@ function Account() {
     const handleEdit = async () => {
         await handleImage();
         await updateProfile(authUser, { displayName: name });
-        await verifyBeforeUpdateEmail(authUser, email);
+        if(email !== authUser?.email){
+            verifyBeforeUpdateEmail(authUser, email)
+        }
+
         setEdit(false);
         
         router.reload();
@@ -79,8 +82,8 @@ function Account() {
     
 
     return (
-        <div className='flex flex-col gap-4'>
-            <h1 className='text-2xl font-semibold'>Account</h1>
+        <div className='flex flex-col gap-4 '>
+            <h1 className='text-2xl font-bold'>Account</h1>
             <div className='flex flex-row gap-10 items-center w-full relative'>
                 {
                     !edit ?
@@ -99,21 +102,21 @@ function Account() {
                                     <BiCamera size={20} />
                                 </div>
                             </div>
-                            <div className='flex flex-col gap-2'>
-                                <input onChange={(e) => setName(e.target.value)} type="text" defaultValue={authUser?.displayName} className='p-1 px-2 rounded-xl text-3xl font-semibold focus:outline-none border-2' />
-                                <input onChange={(e) => setEmail(e.target.value)} type="text" defaultValue={authUser?.email} className='p-1 px-2 rounded-xl focus:outline-none border-2' />
+                            <div className='flex flex-col gap-4'>
+                                <input onChange={(e) => setName(e.target.value)} type="text" defaultValue={authUser?.displayName} className='p-1 text-3xl font-semibold focus:outline-none border-b-[1px] border-black' />
+                                <input onChange={(e) => setEmail(e.target.value)} type="text" defaultValue={authUser?.email} className='p-1  focus:outline-none border-b-[1px] border-black' />
                             </div>
                         </>
                 }
                 <div className='absolute right-4 bottom-0 flex flex-row gap-4'>
                     {
                         edit ? (
-                            <button onClick={handleEdit} className=' bg-blue-800 text-white p-3 rounded-xl'>Save</button>
+                            <button onClick={handleEdit} className=' bg-blue-800 text-white p-3 rounded-xl  flex flex-row gap-2'><BiSave size={20}></BiSave><h1>Save</h1></button>
                         ) : (
-                            <button onClick={() => setEdit(true)} className=' bg-blue-800 text-white p-3 rounded-xl'>Edit</button>
+                            <button onClick={() => setEdit(true)} className=' bg-blue-800 text-white p-3 rounded-xl  flex flex-row gap-2'><BiEdit size={20}></BiEdit><h1>Edit</h1></button>
                         )
                     }
-                    <button onClick={DeleteAccount} className=' bg-red-800 text-white p-3 rounded-xl'>Delete Account</button>
+                    <button onClick={DeleteAccount} className=' bg-red-800 text-white p-3 rounded-xl flex flex-row gap-2'><BiTrash size={20}></BiTrash><h1>Delete</h1></button>
                 </div>
             </div>
         </div>
@@ -121,7 +124,4 @@ function Account() {
 }
 
 export default Account;
-function promptForCredentials() {
-    throw new Error('Function not implemented.');
-}
 
