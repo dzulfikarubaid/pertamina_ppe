@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import TopBar from './topbar'
 import SideBar from './sidebar'
-import AppContext from './context';
+import AppContext from '../context';
 import { BiLink } from 'react-icons/bi';
 import { useRouter } from 'next/router';
 import { auth } from '@/firebase/connect';

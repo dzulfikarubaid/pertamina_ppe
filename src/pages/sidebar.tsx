@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { BiCamera, BiCctv, BiDesktop, BiSolidCctv, BiSolidDashboard, BiUser } from 'react-icons/bi'
-import AppContext from './context';
+import AppContext from '../context';
 
 function SideBar() {
     const { dashboard, setDashboard, cctv, setCctv, lm, setLm, account, setAccount } = useContext(AppContext);

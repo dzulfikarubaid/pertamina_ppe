@@ -5,7 +5,7 @@ import { Sign } from 'crypto';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { BiChevronDown, BiChevronUp, BiExit, BiX } from 'react-icons/bi';
-import AppContext from './context';
+import AppContext from '../context';
 import Image from 'next/image';
 function TopBar() {
   const [authUser, setAuthUser] = React.useState<any>("");
