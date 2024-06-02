@@ -61,8 +61,8 @@ function SignIn() {
     <div className='flex flex-row'>
     <img src="gambar.png" width={720} alt="" />
     <div className='flex flex-col justify-start items-center'>
-    <img src="logo.png" alt="" />
-    <div className='flex flex-col justify-center items-center gap-10'>
+    <img className='h-[250px]' src="logo.png" alt="" />
+    <div className='flex flex-col justify-center items-center gap-6'>
     <h1 className='text-4xl text-blue-900 font-semibold'>Sign In</h1>
     <h1>Welcome back! Please enter your details.</h1>
     <div className='flex flex-col justify-center items-start gap-4 text-left'>
@@ -75,7 +75,7 @@ function SignIn() {
     {!loading?
               <button onClick={signIn} className='bg-blue-900 text-white p-4 py-2 rounded-lg w-full text-center'>Sign In</button>
               :
-              <button disabled className='bg-gray-100 text-white p-4 py-2 rounded-lg w-full text-center'>Loading...</button>
+              <button disabled className='bg-blue-900 text-white p-4 py-2 rounded-lg w-full text-center'>Loading...</button>
               }
     <h1>Don’t have an account? <Link href="/signup" className='text-blue-950 text-center'>Sign Up</Link></h1>
     </div>

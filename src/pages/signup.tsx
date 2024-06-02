@@ -88,7 +88,7 @@ function SignUp() {
               {!loading?
               <button onClick={signUp} className='bg-blue-900 text-white p-4 py-2 rounded-lg w-full text-center'>Sign Up</button>
               :
-              <button disabled className='bg-gray-100 text-white p-4 py-2 rounded-lg w-full text-center'>Loading...</button>
+              <button disabled className='bg-blue-900 text-white p-4 py-2 rounded-lg w-full text-center'>Loading...</button>
               }
               <h1>Already have an account? <Link href="/signin" className='text-blue-950'>Sign In</Link></h1>
             </div>
