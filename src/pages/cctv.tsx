@@ -17,7 +17,7 @@ function Cctv() {
       {
         connected?
         <>
-        <div className='flex flex-row items-center p-2 py-1 rounded-xl'>
+        <div className='flex flex-row items-center p-2 py-1 gap-2 rounded-xl'>
       <BiCameraHome></BiCameraHome>
       <h1 className='text-sm'>Your Camera Has Been <span className='text-lime-400'>Conected</span> Succesfully!!</h1>
       </div>
