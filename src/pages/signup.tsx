@@ -11,6 +11,7 @@ function SignUp() {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [authUser, setAuthUser] = React.useState<any>("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -28,7 +29,7 @@ function SignUp() {
 
   }, [])
   async function signUp() {
-
+    setLoading(true)
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -37,12 +38,15 @@ function SignUp() {
           displayName: name
         }).then(() => {
           console.log(user)
+         setLoading(false)
          router.push("/home")
 
       })})
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        setLoading(false)
 
         console.log(errorCode, errorMessage)
         if(errorCode === "auth/email-already-in-use"){

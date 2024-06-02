@@ -11,6 +11,7 @@ function SignIn() {
   const [errorPassword, setErrorPassword] = useState("");
   const [authUser, setAuthUser] = React.useState<any>("");
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -27,11 +28,11 @@ function SignIn() {
 
   }, [])
   async function signIn() {
-
+    setLoading(true)
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-
+        setLoading(false)
         console.log(user)
        router.push("/home")
 
@@ -39,6 +40,8 @@ function SignIn() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        setLoading(false)
 
         console.log(errorCode, errorMessage)
         if(errorCode === "auth/invalid-credential"){
@@ -69,7 +72,11 @@ function SignIn() {
     <label htmlFor="password">Password</label>
     <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder='Enter your password' className='p-2 rounded-xl border-[1px] w-full'/>
     <p className='text-red-500'>{errorPassword}</p>
-    <button onClick={signIn} className='bg-blue-900 text-white p-4 py-2 rounded-lg w-full text-center'>Sign In</button>
+    {!loading?
+              <button onClick={signIn} className='bg-blue-900 text-white p-4 py-2 rounded-lg w-full text-center'>Sign In</button>
+              :
+              <button disabled className='bg-gray-100 text-white p-4 py-2 rounded-lg w-full text-center'>Loading...</button>
+              }
     <h1>Don’t have an account? <Link href="/signup" className='text-blue-950 text-center'>Sign Up</Link></h1>
     </div>
     </div>
