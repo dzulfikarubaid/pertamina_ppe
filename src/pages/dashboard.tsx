@@ -173,15 +173,15 @@ const currentData = sortedData.slice((currentPage - 1) * itemsPerPage, currentPa
             <Line options={chartOptions} data={chartData(dailyLabels, dailyData, 'rgb(0, 99, 255)', 'rgba(0, 99, 255, 0.5)')} />
           </div>
         </div>
-        <div className='flex flex-row gap-10'>
-          <div className='bg-black/5 relative w-[500px] h-fit rounded-xl flex justify-center items-center p-3 flex-col text-left'>
+        <div className='flex flex-row gap-10 w-full items-center justify-center'>
+          <div className='bg-black/5 relative w-[42.5%] h-fit rounded-xl flex justify-center items-center p-3 flex-col text-left'>
             <Image className='absolute top-0 right-0' src="/logo.png" width={140} height={140} alt='' />
             <h1 className='text-xl pb-4 w-full font-semibold text-left'>Grafik Pelanggaran/bulan</h1>
             <div style={{ width: '100%', height: '100%', margin: '0 auto' }}>
               <Line options={chartOptions} data={chartData(monthlyLabels, monthlyData, 'rgb(0, 255, 132)', 'rgba(0, 255, 132, 0.5)')} />
             </div>
           </div>
-          <div className='bg-black/5 relative w-[500px] h-fit rounded-xl flex justify-center items-center p-3 flex-col text-left'>
+          <div className='bg-black/5 relative w-[42.5%] h-fit rounded-xl flex justify-center items-center p-3 flex-col text-left'>
             <Image className='absolute top-0 right-0' src="/logo.png" width={140} height={140} alt='' />
             <h1 className='text-xl pb-4 w-full font-semibold text-left'>Grafik Pelanggaran/tahun</h1>
             <div style={{ width: '100%', height: '100%', margin: '0 auto' }}>

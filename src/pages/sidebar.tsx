@@ -15,7 +15,7 @@ function SideBar() {
     <button onClick={setAccount} className={`flex flex-row gap-2 items-center ${account ? "text-white" : "text-white/70"}`}><BiUser></BiUser><h1>Account</h1></button>
     </div>
 
-    <div className='w-[265px] min-h-screen bg-black/30 flex flex-col gap-8  p-4 py-8 '>
+    <div className='min-w-[225px] min-h-screen bg-black/30 flex flex-col gap-8  p-4 py-8 '>
    
     </div>
     </>
